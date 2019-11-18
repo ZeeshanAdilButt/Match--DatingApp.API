@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.DTO;
 using DatingApp.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,7 @@ namespace DatingApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuthController : ControllerBase
     {
 
@@ -30,6 +32,7 @@ namespace DatingApp.API.Controllers
         public IConfiguration _config { get; }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(UserForRegisterDTO userForRegisterDTO)
         {
 
@@ -51,8 +54,10 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDTO)
         {
+
             var userFromRepo = await _authRepo.Login(userForLoginDTO.userName.ToLower(), userForLoginDTO.password);
 
             if (userFromRepo == null)
@@ -78,6 +83,7 @@ namespace DatingApp.API.Controllers
             {
                 token = tokenHandler.WriteToken(token)
             });
+
         }
     }
 }
