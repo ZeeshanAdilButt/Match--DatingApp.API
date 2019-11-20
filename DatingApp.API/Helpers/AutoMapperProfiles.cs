@@ -11,6 +11,10 @@ namespace DatingApp.API.Helpers
 {
     public class AutoMapperProfiles : Profile
     {
+
+        int test = 0;
+
+
         public AutoMapperProfiles()
         {
             CreateMap<User, UserForListDTO>()
