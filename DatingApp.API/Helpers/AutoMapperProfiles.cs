@@ -13,6 +13,8 @@ namespace DatingApp.API.Helpers
     {
 
         int test = 0;
+        int test2 = 0;
+        int test3 = 0;
 
 
         public AutoMapperProfiles()
