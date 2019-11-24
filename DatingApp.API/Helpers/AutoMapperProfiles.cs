@@ -35,6 +35,7 @@ namespace DatingApp.API.Helpers
             #region Request DTOs
 
             CreateMap<UserForUpdateDTO, User>();
+            CreateMap<UserForRegisterDTO, User>();
             CreateMap<PhotoForCreationDTO, Photo>();
 
             #endregion
