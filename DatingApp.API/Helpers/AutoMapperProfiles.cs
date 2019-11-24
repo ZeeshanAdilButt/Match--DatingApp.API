@@ -11,14 +11,9 @@ namespace DatingApp.API.Helpers
 {
     public class AutoMapperProfiles : Profile
     {
-
-        int test = 0;
-        int test2 = 0;
-        int test3 = 0;
-
-
         public AutoMapperProfiles()
         {
+            #region Response DTOs
             CreateMap<User, UserForListDTO>()
                 .ForMember(dest => dest.PhotoUrl, opt =>
                 opt.MapFrom(src=> src.Photos.FirstOrDefault(p=> p.IsMain).URL))
@@ -32,6 +27,17 @@ namespace DatingApp.API.Helpers
                  opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
 
             CreateMap<Photo, PhotosForDetailDTO>();
+            CreateMap<Photo, PhotoForReturnDTO>();
+
+            #endregion
+
+
+            #region Request DTOs
+
+            CreateMap<UserForUpdateDTO, User>();
+            CreateMap<PhotoForCreationDTO, Photo>();
+
+            #endregion
         }
     }
 }
